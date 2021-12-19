@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+	
+	<record id="highest_selling_product_report_view_form" model="ir.ui.view">
+		<field name="name">highest.selling.product.report.form.view</field>
+		<field name="model">highest.selling.product.report</field>
+		<field name="arch" type="xml">
+			<form string="Highest Selling Product Report">
+				<group>
+					<field name="report_type" widget="radio" />
+				</group>
+				<group>
+					<group>
+						<field name="from_date" required="1"/>
+						<field name="to_date" required="1"/>
+						<field name="no_item" />
+					</group>
+					<group>
+						<field name="compare_from_date"
+							attrs="{'invisible':[('report_type','!=','compare')],'required':[('report_type','=','compare')]}" />
+						<field name="compare_to_date"
+							attrs="{'invisible':[('report_type','!=','compare')],'required':[('report_type','=','compare')]}" />
+					</group>
+				</group>
+				<group>
+					<group>
+						<field name="total_qty_sold" />
+						<field name="sales_channel_ids" />
+						<field name="company_ids" widget="many2many_tags" />
+					</group>
+				</group>
+				<footer>
+					<button name="update_top_selling_pdf_report" class="btn btn-primary" string="Print PDF"
+						type="object" />
+					<button name="update_top_selling_xls_report" class="btn btn-primary"
+						string="Print XLS" type="object" />
+					<button special="cancel" string="Cancel" />
+				</footer>
+			</form>
+		</field>
+	</record>
+
+	<record id="highest_selling_product_report_form_action" model="ir.actions.act_window">
+		<field name="name">Highest Selling Product Report</field>
+		<field name="res_model">highest.selling.product.report</field>
+		<field name="view_id" ref="highest_selling_product_report_view_form" />
+		<field name="view_mode">form</field>
+		<field name="target">new</field>
+	</record>
+
+	<record id="highest_selling_product_tree_view" model="ir.ui.view">
+		<field name="name">highest.selling.product.tree.view</field>
+		<field name="model">highest.selling.product</field>
+		<field name="arch" type="xml">
+			<tree string="Highest Selling Products">
+				<field name="product_id"/>
+				<field name="product_uom_qty"/>
+			</tree>
+		</field>
+	</record>
+
+	<record id="highest_selling_product_action" model="ir.actions.server">
+		<field name="name">Highest Selling Products</field>
+		<field name="model_id" ref="bi_all_in_one_sale_reports.model_highest_selling_product" />
+		<field name="state">code</field>
+		<field name="code">action = model.product_details()</field>
+
+	</record>
+
+	<menuitem 
+		id="highest_selling_product_report_menu"
+		name="Highest Selling Product Report"
+		action="highest_selling_product_report_form_action" 
+		parent="advance_sale_report_menu"
+		groups="bi_all_in_one_sale_reports.sales_reports_group"
+		sequence="8"
+	/>
+
+	<menuitem 
+		id="highest_selling_product_analysis_menu"
+		name="Highest Selling Product Analysis"
+		action="highest_selling_product_action" 
+		parent="advance_sale_report_menu"
+		groups="bi_all_in_one_sale_reports.sales_reports_group"
+		sequence="9"
+	/>
+
+</odoo>

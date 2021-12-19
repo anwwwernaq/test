@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+	<record id="product_sales_summary_report_view_form" model="ir.ui.view">
+		<field name="name">product.sales.summary.report.form.view</field>
+		<field name="model">product.sales.summary.report</field>
+		<field name="arch" type="xml">
+			<form string="Product Sales Summary Report">
+				<group>
+					<group>
+						<field name="start_date" required="1"/>
+						<field name="select_state" />
+					</group>
+					<group>
+						<field name="end_date" required="1"/>
+						<field name="sales_channel_ids" widget="many2many_tags"/>
+					</group>
+				</group>
+				<group>
+					<field name="company_ids" widget="many2many_tags"/>
+				</group>
+				<footer>
+					<button name="product_sales_summary_pdf_report" class="btn btn-primary" string="Print PDF"
+						type="object" />
+					<button name="product_sales_summary_xls_report" class="btn btn-primary" string="Print XLS"
+						type="object" />
+					<button special="cancel" string="Cancel" />
+				</footer>
+			</form>
+		</field>
+	</record>
+
+	<record id="product_sales_summary_report_action" model="ir.actions.act_window">
+		<field name="name">Product Sales Summary Report</field>
+		<field name="res_model">product.sales.summary.report</field>
+		<field name="view_id" ref="product_sales_summary_report_view_form" />
+		<field name="view_mode">form</field>
+		<field name="target">new</field>
+	</record>
+
+	<menuitem 
+		id="product_sales_summary_report_menu"
+		name="Product Sales Summary Report"
+		action="product_sales_summary_report_action" 
+		parent="advance_sale_report_menu"
+		groups="bi_all_in_one_sale_reports.sales_reports_group"
+		sequence="5"
+	/>
+
+</odoo>

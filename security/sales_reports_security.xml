@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<record id="sales_reports_group" model="res.groups">
+			<field name="name">Print Sales Reports</field>
+		</record>
+		<record id="salesperson_group" model="res.groups">
+			<field name="name">Salesperson on Invoice/Sales Payment Report</field>
+		</record>
+
+	</data>
+</odoo>

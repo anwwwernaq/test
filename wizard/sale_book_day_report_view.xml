@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<odoo>
+	<data>
+
+		<record id="sale_day_book_report_form_view" model="ir.ui.view">
+			<field name="name">sale.day.book.report.view</field>
+			<field name="model">sale.day.book.report</field>
+			<field name="arch" type="xml">
+				<form string="Sale Day Book Report">
+					<group col='4'>
+						<field name="start_date" class="oe_inline" />
+						<field name="end_date" class="oe_inline"/>
+					</group>
+					<footer>
+						<button string="Print PDF" name="sales_day_book_pdf_report" type="object" class="oe_highlight"/>
+						<button string="Print XLS" name="sales_day_book_xls_report" type="object" class="oe_highlight"/>
+						<button string="Cancel" class="oe_link" special="cancel" />
+					</footer>
+			   </form>
+			</field>
+		</record>
+
+		<record id="sale_book_day_report_form_action" model="ir.actions.act_window">
+			<field name="name">Sales Day Book Report</field>
+			<field name="res_model">sale.day.book.report</field>
+			<field name="binding_view_types">form</field>
+			<field name="view_mode">form</field>
+			<field name="target">new</field>
+		</record>
+
+		<menuitem 
+			id="sale_book_day_report_menu"
+			name="Sales Day Book Report"
+			action="sale_book_day_report_form_action" 
+			parent="advance_sale_report_menu"
+			groups="bi_all_in_one_sale_reports.sales_reports_group"
+			sequence="3"
+		/>
+
+	</data>
+</odoo>

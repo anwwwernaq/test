@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+	<record id="customer_invoice_payment_report_form_view" model="ir.ui.view">
+		<field name="name">customer.invoice.payment.report.form.view</field>
+		<field name="model">customer.invoice.payment.report</field>
+		<field name="arch" type="xml">
+			<form string="Payment Report for Invoice/Sales">
+				<group>
+					<group>
+						<field name="start_date" required="1" />
+						<field name="end_date" required="1" />
+						<field name="is_manager" invisible="1"/>
+					</group>
+					<group>
+						<field name="select_state" />
+						<field name="company_ids" options="{'no_create_edit': True}"
+							widget="many2many_tags" />
+					</group>
+				</group>
+
+				<field name="user_ids" groups="bi_all_in_one_sale_reports.salesperson_group" nolabel="1" attrs="{'readonly':[('is_manager', '=', False)]}">
+					<tree >
+						<field name="name" string="Name"/>
+					</tree>
+				</field>
+				<footer>
+					<button name="invoice_payment_pdf_report" class="btn btn-primary" string="Print PDF"
+						type="object" />
+					<button name="invoice_payment_xls_report" class="btn btn-primary"
+						string="Print XLS" type="object" />
+					<button special="cancel" string="Cancel" />
+				</footer>
+			</form>
+		</field>
+	</record>
+
+	<record id="customer_invoice_payment_report_action" model="ir.actions.act_window">
+		<field name="name">Payment Report for Invoice/Sales</field>
+		<field name="res_model">customer.invoice.payment.report</field>
+		<field name="view_id" ref="customer_invoice_payment_report_form_view" />
+		<field name="view_mode">form</field>
+		<field name="target">new</field>
+	</record>
+
+	<menuitem 
+		id="customer_invoice_payment_report_menu"
+		name="Payment Report for Invoice/Sales"
+		action="customer_invoice_payment_report_action"
+		parent="advance_sale_report_menu"
+		groups="bi_all_in_one_sale_reports.sales_reports_group"
+		sequence="6"
+	/>
+
+</odoo>

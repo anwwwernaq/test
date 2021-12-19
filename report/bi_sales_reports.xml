@@ -1,0 +1,149 @@
+<odoo>
+	<data>
+
+		<!--  Report PaperFormat -->
+		<record id="paperformat_sale_reports" model="report.paperformat">
+			<field name="name">Sales Reports</field>
+			<field name="default" eval="True"/>
+			<field name="format">A4</field>
+			<field name="orientation">Portrait</field>
+			<field name="margin_top">40</field>
+			<field name="margin_bottom">15</field>
+			<field name="margin_left">5</field>
+			<field name="margin_right">5</field>
+			<field name="header_line" eval="False"/>
+			<field name="header_spacing">40</field>
+			<field name="dpi">90</field>
+		</record>
+
+		<!-- Sales Day Book Report Paper Format -->
+		<record id="sale_day_book_paper_format" model="report.paperformat">
+			<field name="name">Sales Day Book Report</field>
+			<field name="default" eval="True" />
+			<field name="format">custom</field>
+			<field name="page_height">200</field>
+			<field name="page_width">300</field>
+			<field name="margin_top">40</field>
+			<field name="margin_bottom">15</field>
+			<field name="margin_left">10</field>
+			<field name="margin_right">10</field>
+			<field name="header_line" eval="False" />
+			<field name="orientation">Portrait</field>
+			<field name="header_spacing">40</field>
+			<field name="dpi">80</field>
+		</record>
+
+		<!-- Sales Day Wise Report  -->
+		<record id="sales_day_wise_report_action" model="ir.actions.report">
+			<field name="name">Sales Day Wise Report</field>
+			<field name="model">sales.day.wise.report</field>
+			<field name="report_type">qweb-pdf</field>
+			<field name="report_name">bi_all_in_one_sale_reports.sales_day_wise_report_template</field>
+			<field name="report_file">bi_all_in_one_sale_reports.sales_day_wise_report_template</field>
+			<field name="print_report_name">'Sales Day Wise Report- %s'</field>
+			<field name="binding_model_id" ref="model_sales_day_wise_report"/>
+			<field name="binding_type">report</field>
+			<field name="paperformat_id" ref="bi_all_in_one_sale_reports.paperformat_sale_reports"/>
+		</record>
+
+
+		<!--  User Wise Sales Detail Report -->
+		<record id="user_wise_sales_detail_report_action" model="ir.actions.report">
+			<field name="name">User Wise Sales Detail Report</field>
+			<field name="model">user.wise.sales.detail.report</field>
+			<field name="report_type">qweb-pdf</field>
+			<field name="report_name">bi_all_in_one_sale_reports.user_wise_sales_detail_doc</field>
+			<field name="report_file">bi_all_in_one_sale_reports.user_wise_sales_detail_doc</field>
+			<field name="print_report_name">'User Wise Purchase Detail Report - %s'</field>
+			<field name="binding_model_id" ref="model_user_wise_sales_detail_report"/>
+			<field name="binding_type">report</field>
+			<field name="paperformat_id" ref="bi_all_in_one_sale_reports.paperformat_sale_reports"/>
+		</record>
+
+
+		<!--  Product Sales Summary Report -->
+		<record id="action_sale_summary_report" model="ir.actions.report">
+			<field name="name">Product Sales Summary Report</field>
+			<field name="model">product.sales.summary.report</field>
+			<field name="report_type">qweb-pdf</field>
+			<field name="report_name">bi_all_in_one_sale_reports.product_sales_summary_report_document</field>
+			<field name="report_file">bi_all_in_one_sale_reports.product_sales_summary_report_document</field>
+			<field name="print_report_name">'Product Sales Summary Report - %s'</field>
+			<field name="binding_model_id" ref="model_product_sales_summary_report"/>
+			<field name="binding_type">report</field>
+			<field name="paperformat_id" ref="bi_all_in_one_sale_reports.paperformat_sale_reports"/>
+		</record>
+
+
+		<!-- Payment Report for Invoice/Sales  -->
+		<record id="customer_invoice_payment_report_action" model="ir.actions.report">
+			<field name="name">Payment Report for Invoice/Sales</field>
+			<field name="model">customer.invoice.payment.report</field>
+			<field name="report_type">qweb-pdf</field>
+			<field name="report_name">bi_all_in_one_sale_reports.customer_invoice_payment_report_template</field>
+			<field name="report_file">bi_all_in_one_sale_reports.customer_invoice_payment_report_template</field>
+			<field name="print_report_name">'Payment Report for Invoice/Sales - %s'</field>
+			<field name="binding_model_id" ref="model_customer_invoice_payment_report"/>
+			<field name="binding_type">report</field>
+			<field name="paperformat_id" ref="bi_all_in_one_sale_reports.paperformat_sale_reports"/>
+		</record>
+
+		
+		<!--  Top Customer Product Report  -->
+		<record id="top_customer_product_report_action" model="ir.actions.report">
+			<field name="name">Top Customer Product Report</field>
+			<field name="model">top.customer.product.report</field>
+			<field name="report_type">qweb-pdf</field>
+			<field name="report_name">bi_all_in_one_sale_reports.top_customer_product_report_template</field>
+			<field name="report_file">bi_all_in_one_sale_reports.top_customer_product_report_template</field>
+			<field name="print_report_name">'Top Customer Product Report'</field>
+			<field name="binding_model_id" ref="model_top_customer_product_report"/>
+			<field name="binding_type">report</field>
+			<field name="paperformat_id" ref="bi_all_in_one_sale_reports.paperformat_sale_reports"/>
+		</record>
+
+
+		<!--  Highest Selling Product Report  -->
+		<record id="highest_selling_product_report_action" model="ir.actions.report">
+			<field name="name">Highest Selling Product Report</field>
+			<field name="model">highest.selling.product.report</field>
+			<field name="report_type">qweb-pdf</field>
+			<field name="report_name">bi_all_in_one_sale_reports.highest_selling_product_report_template</field>
+			<field name="report_file">bi_all_in_one_sale_reports.highest_selling_product_report_template</field>
+			<field name="print_report_name">'Highest Selling Product Report'</field>
+			<field name="binding_model_id" ref="model_highest_selling_product_report"/>
+			<field name="binding_type">report</field>
+			<field name="paperformat_id" ref="bi_all_in_one_sale_reports.paperformat_sale_reports"/>
+		</record>
+
+
+		<!-- Sales Order Category Report -->
+		<record id="sale_category_report_action" model="ir.actions.report">
+			<field name="name">Sale Order Category Report</field>
+			<field name="model">sale.order</field>
+			<field name="report_type">qweb-pdf</field>
+			<field name="report_name">bi_all_in_one_sale_reports.sale_order_category_report_template</field>
+			<field name="report_file">bi_all_in_one_sale_reports.sale_order_category_report_template</field>
+			<field name="print_report_name">'Sale Order Category Report'</field>
+			<field name="binding_model_id" ref="sale.model_sale_order"/>
+			<field name="binding_type">report</field>
+			<field name="groups_id" eval="[(4, ref('bi_all_in_one_sale_reports.sales_reports_group'))]"/>
+			<field name="paperformat_id" ref="bi_all_in_one_sale_reports.paperformat_sale_reports"/>
+		</record>
+
+
+		<!-- Sales Day Book Report -->
+		<record id="sales_day_book_report_template" model="ir.actions.report">
+			<field name="name">Sales Day Book Report</field>
+			<field name="model">sale.day.book.report</field>
+			<field name="report_type">qweb-pdf</field>
+			<field name="report_name">bi_all_in_one_sale_reports.sales_daybook_report_document</field>
+			<field name="report_file">bi_all_in_one_sale_reports.sales_daybook_report_document</field>
+			<field name="print_report_name">'Sales Day Book Report'</field>
+			<field name="binding_model_id" ref="model_sale_day_book_report"/>
+			<field name="paperformat_id" ref="bi_all_in_one_sale_reports.sale_day_book_paper_format"/>
+			<field name="binding_type">report</field>
+		</record>
+		
+	</data>
+</odoo>
